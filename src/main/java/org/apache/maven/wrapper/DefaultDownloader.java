@@ -51,6 +51,10 @@ public class DefaultDownloader implements Downloader {
     }
   }
 
+  public boolean isActive() {
+      return true;
+  }
+
   public void download(URI address, File destination) throws Exception {
     if (destination.exists()) {
       return;
