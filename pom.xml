@@ -3,7 +3,7 @@
   <parent>
     <groupId>io.takari</groupId>
     <artifactId>takari</artifactId>
-    <version>19</version>
+    <version>23</version>
   </parent>
   
   <artifactId>maven-wrapper</artifactId>
@@ -17,6 +17,9 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <properties>
+    <takari.javaSourceVersion>1.5</takari.javaSourceVersion>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -62,7 +65,7 @@
       <plugin>
         <groupId>io.takari.maven.plugins</groupId>
         <artifactId>provisio-maven-plugin</artifactId>
-        <version>0.1.17</version>
+        <version>0.1.44</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>

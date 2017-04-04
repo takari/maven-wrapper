@@ -2,7 +2,7 @@
   <archive name="${project.artifactId}-${project.version}.tar.gz" />
   
   <artifactSet to="/.mvn/wrapper">
-     <artifact ref="projectArtifact" as="maven-wrapper.jar"/> 
+     <artifact ref="projectArtifact" as="maven-wrapper.jar"/>
   </artifactSet>
   
   <fileSet to="/">
@@ -10,6 +10,7 @@
       <include>mvnw</include>
       <include>mvnw.cmd</include>
       <include>.mvn/**</include>
+      <exclude>**/*.jar</exclude>
     </directory>
   </fileSet>
 </runtime>
