@@ -39,7 +39,7 @@ public class BootstrapMainStarter {
     }
   }
   public void start(String[] args, File mavenHome) throws Exception {
-    Launcher launcher = findLauncherJar(mavenHome);
+    Launcher launcher = findLauncher(mavenHome);
     URLClassLoader contextClassLoader = new URLClassLoader(new URL[] {
       launcher.getJar().toURI().toURL()
     }, ClassLoader.getSystemClassLoader().getParent());
@@ -55,7 +55,7 @@ public class BootstrapMainStarter {
     });
   }
 
-  private Launcher findLauncherJar(File mavenHome) {
+  private Launcher findLauncher(File mavenHome) {
     for (File file : new File(mavenHome, "boot").listFiles()) {
       if (file.getName().matches("plexus-classworlds-.*\\.jar")) {
         return new Launcher(file, "org.codehaus.plexus.classworlds.launcher.Launcher");
