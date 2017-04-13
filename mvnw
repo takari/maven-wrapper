@@ -198,7 +198,7 @@ fi
 
 # Workaround for JBEAP-8937 (do not change, it may break on Solaris)
 if [ -z "${MAVEN_PROJECTBASEDIR}" ]; then
-  export MAVEN_PROJECTBASEDIR=`find_maven_basedir`
+  export MAVEN_PROJECTBASEDIR=`find_maven_basedir "$(pwd)"`
 fi
 # End of fix
 
