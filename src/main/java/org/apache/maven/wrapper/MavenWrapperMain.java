@@ -46,8 +46,12 @@ public class MavenWrapperMain {
 
     addSystemProperties(rootDir);
 
+    final Downloader defaultDownloader = new DefaultDownloader("mvnw", wrapperVersion());
+    final Downloader mavenSettingsDownloader = new MavenSettingsDownloader();
+    final Downloader downloader = mavenSettingsDownloader.isActive() ? mavenSettingsDownloader : defaultDownloader;
+
     WrapperExecutor wrapperExecutor = WrapperExecutor.forWrapperPropertiesFile(propertiesFile, System.out);
-    wrapperExecutor.execute(args, new Installer(new DefaultDownloader("mvnw", wrapperVersion()), new PathAssembler(mavenUserHome())), new BootstrapMainStarter());
+    wrapperExecutor.execute(args, new Installer(downloader, new PathAssembler(mavenUserHome())), new BootstrapMainStarter());
   }
 
   private static Map<String, String> parseSystemPropertiesFromArgs(String[] args) {

@@ -22,5 +22,6 @@ import java.net.URI;
  * @author Hans Dockter
  */
 public interface Downloader {
+  boolean isActive();
   void download(URI address, File destination) throws Exception;
 }
