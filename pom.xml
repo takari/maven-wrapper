@@ -17,9 +17,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <properties>
-    <takari.javaSourceVersion>1.5</takari.javaSourceVersion>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
