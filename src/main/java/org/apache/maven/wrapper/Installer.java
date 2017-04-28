@@ -48,7 +48,7 @@ public class Installer {
     this.pathAssembler = pathAssembler;
   }
 
-  public File createDist(WrapperConfiguration configuration) throws Exception {
+  public File createDist(WrapperConfiguration configuration, String[] args) throws Exception {
     URI distributionUrl = configuration.getDistribution();
     boolean alwaysDownload = configuration.isAlwaysDownload();
     boolean alwaysUnpack = configuration.isAlwaysUnpack();
@@ -61,7 +61,7 @@ public class Installer {
       File tmpZipFile = new File(localZipFile.getParentFile(), localZipFile.getName() + ".part");
       tmpZipFile.delete();
       System.out.println("Downloading " + distributionUrl);
-      download.download(distributionUrl, tmpZipFile);
+      download.download(distributionUrl, tmpZipFile, args);
       tmpZipFile.renameTo(localZipFile);
       downloaded = true;
     }

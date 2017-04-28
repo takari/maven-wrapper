@@ -29,6 +29,7 @@ public class DownloaderTest {
     testDir = new File("target/test-files/DownloadTest");
     rootDir = new File(testDir, "root");
     downloadFile = new File(rootDir, "file");
+    downloadFile.delete();
     remoteFile = new File(testDir, "remoteFile");
     FileUtils.write(remoteFile, "sometext");
     sourceRoot = remoteFile.toURI();
@@ -36,8 +37,8 @@ public class DownloaderTest {
 
   @Test
   public void testDownload() throws Exception {
-    assert !downloadFile.exists();
-    download.download(sourceRoot, downloadFile);
+    assert!downloadFile.exists();
+    download.download(sourceRoot, downloadFile, new String[0]);
     assert downloadFile.exists();
     assertEquals("sometext", FileUtils.readFileToString(downloadFile));
   }

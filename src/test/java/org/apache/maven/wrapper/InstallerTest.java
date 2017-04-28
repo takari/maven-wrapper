@@ -87,7 +87,7 @@ public class InstallerTest {
   }
 
   public void testCreateDist() throws Exception {
-    File homeDir = install.createDist(configuration);
+    File homeDir = install.createDist(configuration, new String[0]);
 
     Assert.assertEquals(mavenHomeDir, homeDir);
     Assert.assertTrue(homeDir.isDirectory());
@@ -110,7 +110,7 @@ public class InstallerTest {
     File someFile = new File(mavenHomeDir, "some-file");
     FileUtils.touch(someFile);
 
-    File homeDir = install.createDist(configuration);
+    File homeDir = install.createDist(configuration, new String[0]);
 
     Assert.assertEquals(mavenHomeDir, homeDir);
     Assert.assertTrue(mavenHomeDir.isDirectory());
@@ -131,7 +131,7 @@ public class InstallerTest {
     FileUtils.touch(garbage);
     configuration.setAlwaysUnpack(true);
 
-    File homeDir = install.createDist(configuration);
+    File homeDir = install.createDist(configuration, new String[0]);
 
     Assert.assertEquals(mavenHomeDir, homeDir);
     Assert.assertTrue(mavenHomeDir.isDirectory());
@@ -151,7 +151,7 @@ public class InstallerTest {
     FileUtils.touch(garbage);
     configuration.setAlwaysUnpack(true);
 
-    File homeDir = install.createDist(configuration);
+    File homeDir = install.createDist(configuration, new String[0]);
 
     Assert.assertEquals(mavenHomeDir, homeDir);
     Assert.assertTrue(mavenHomeDir.isDirectory());

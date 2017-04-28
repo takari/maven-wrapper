@@ -24,8 +24,10 @@ import java.io.OutputStream;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+
 
 /**
  * @author Hans Dockter
@@ -42,25 +44,42 @@ public class DefaultDownloader implements Downloader {
   public DefaultDownloader(String applicationName, String applicationVersion) {
     this.applicationName = applicationName;
     this.applicationVersion = applicationVersion;
-    configureProxyAuthentication();
   }
 
-  private void configureProxyAuthentication() {
-    if (System.getProperty("http.proxyUser") != null) {
-      Authenticator.setDefault(new SystemPropertiesProxyAuthenticator());
+  private URI configureAuthentication(URI address, String[] args) {
+    String user = null;
+    String password = null;
+    MavenSettings.Credentials credentials = MavenSettings.getCredentials(args, address.getUserInfo());
+    if (credentials != null) {
+      user = credentials.username;
+      password = credentials.password;
+    }
+
+    if (System.getProperty("http.proxyUser") == null && user == null) {
+      return address;
+    }
+
+    Authenticator.setDefault(new DefaultAuthenticator(user, password.toCharArray()));
+    try {
+      return new URI(address.getScheme(), null, address.getHost(), address.getPort(), address.getPath(), address.getQuery(), address.getFragment());
+    } catch (URISyntaxException e) {
+      return address; // not possible
     }
   }
 
-  public void download(URI address, File destination) throws Exception {
+  @Override
+  public void download(URI address, File destination, String[] args) throws Exception {
     if (destination.exists()) {
       return;
     }
     destination.getParentFile().mkdirs();
 
-    downloadInternal(address, destination);
+    downloadInternal(address, destination, args);
   }
 
-  private void downloadInternal(URI address, File destination) throws Exception {
+  private void downloadInternal(URI address, File destination, String[] args) throws Exception {
+    address = configureAuthentication(address, args);
+
     OutputStream out = null;
     URLConnection conn;
     InputStream in = null;
@@ -90,6 +109,7 @@ public class DefaultDownloader implements Downloader {
       if (out != null) {
         out.close();
       }
+      Authenticator.setDefault(null); // yuck, but leaking our authenticator to maven is worse
     }
   }
 
@@ -105,10 +125,27 @@ public class DefaultDownloader implements Downloader {
     return String.format("%s/%s (%s;%s;%s) (%s;%s;%s)", applicationName, appVersion, osName, osVersion, osArch, javaVendor, javaVersion, javaVendorVersion);
   }
 
-  private static class SystemPropertiesProxyAuthenticator extends Authenticator {
+  private static class DefaultAuthenticator extends Authenticator {
+    private final String proxyUser = System.getProperty("http.proxyUser");
+    private final char[] proxyPassword = System.getProperty("http.proxyPassword", "").toCharArray();
+
+    private final String user;
+    private final char[] password;
+
+    public DefaultAuthenticator(String user, char[] password) {
+      this.user = user;
+      this.password = password;
+    }
+
     @Override
     protected PasswordAuthentication getPasswordAuthentication() {
-      return new PasswordAuthentication(System.getProperty("http.proxyUser"), System.getProperty("http.proxyPassword", "").toCharArray());
+      if (getRequestorType() == RequestorType.PROXY && proxyUser != null) {
+        return new PasswordAuthentication(proxyUser, proxyPassword);
+      }
+      if (getRequestorType() == RequestorType.SERVER && user != null) {
+        return new PasswordAuthentication(user, password);
+      }
+      return null;
     }
   }
 }

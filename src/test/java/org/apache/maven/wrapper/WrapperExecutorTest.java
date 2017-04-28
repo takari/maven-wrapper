@@ -30,7 +30,7 @@ public class WrapperExecutorTest {
 
   public WrapperExecutorTest() throws Exception {
     install = mock(Installer.class);
-    when(install.createDist(Mockito.any(WrapperConfiguration.class))).thenReturn(mockInstallDir);
+    when(install.createDist(Mockito.any(WrapperConfiguration.class), Mockito.any(String[].class))).thenReturn(mockInstallDir);
     start = mock(BootstrapMainStarter.class);
 
     testDir.mkdirs();
@@ -106,7 +106,7 @@ public class WrapperExecutorTest {
     wrapper.execute(new String[] {
       "arg"
     }, install, start);
-    verify(install).createDist(Mockito.any(WrapperConfiguration.class));
+    verify(install).createDist(Mockito.any(WrapperConfiguration.class), Mockito.any(String[].class));
     verify(start).start(new String[] {
       "arg"
     }, mockInstallDir);

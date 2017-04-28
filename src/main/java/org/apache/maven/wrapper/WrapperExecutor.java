@@ -118,7 +118,7 @@ public class WrapperExecutor {
   }
 
   public void execute(String[] args, Installer install, BootstrapMainStarter bootstrapMainStarter) throws Exception {
-    File mavenHome = install.createDist(config);
+    File mavenHome = install.createDist(config, args);
     bootstrapMainStarter.start(args, mavenHome);
   }
 
