@@ -24,13 +24,27 @@ import java.net.URLClassLoader;
  * @author Hans Dockter
  */
 public class BootstrapMainStarter {
+  private static class Launcher {
+    private File launcherJar;
+    private String className;
+    Launcher(File launcherJar, String className) {
+      this.launcherJar = launcherJar;
+      this.className = className;
+    }
+    public File getJar() {
+      return launcherJar;
+    }
+    public String getClassName() {
+      return className;
+    }
+  }
   public void start(String[] args, File mavenHome) throws Exception {
-    File mavenJar = findLauncherJar(mavenHome);
+    Launcher launcher = findLauncher(mavenHome);
     URLClassLoader contextClassLoader = new URLClassLoader(new URL[] {
-      mavenJar.toURI().toURL()
+      launcher.getJar().toURI().toURL()
     }, ClassLoader.getSystemClassLoader().getParent());
     Thread.currentThread().setContextClassLoader(contextClassLoader);
-    Class<?> mainClass = contextClassLoader.loadClass("org.codehaus.plexus.classworlds.launcher.Launcher");
+    Class<?> mainClass = contextClassLoader.loadClass(launcher.getClassName());
 
     System.setProperty("maven.home", mavenHome.getAbsolutePath());
     System.setProperty("classworlds.conf", new File(mavenHome, "/bin/m2.conf").getAbsolutePath());
@@ -41,12 +55,15 @@ public class BootstrapMainStarter {
     });
   }
 
-  private File findLauncherJar(File mavenHome) {
+  private Launcher findLauncher(File mavenHome) {
     for (File file : new File(mavenHome, "boot").listFiles()) {
       if (file.getName().matches("plexus-classworlds-.*\\.jar")) {
-        return file;
+        return new Launcher(file, "org.codehaus.plexus.classworlds.launcher.Launcher");
+      }
+      else if (file.getName().matches("classworlds-.*\\.jar")) {
+        return new Launcher(file, "org.codehaus.classworlds.Launcher");
       }
     }
     throw new RuntimeException(String.format("Could not locate the Maven launcher JAR in Maven distribution '%s'.", mavenHome));
-  }  
+  }
 }
