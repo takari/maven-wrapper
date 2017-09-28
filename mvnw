@@ -200,6 +200,49 @@ if [ -z "$BASE_DIR" ]; then
   exit 1;
 fi
 
+##########################################################################################
+# Extension to allow automatically downloading the maven-wrapper.jar from Maven-central
+# This allows using the maven wrapper in projects that prohibit checking in binary data.
+##########################################################################################
+if [ -r "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" ]; then
+    echo "Found .mvn/wrapper/maven-wrapper.jar"
+else
+    echo "Couldn't find .mvn/wrapper/maven-wrapper.jar, downloading it ..."
+
+    jarUrl="https://repo1.maven.org/maven2/io/takari/maven-wrapper/0.2.3/maven-wrapper-0.2.3.jar"
+    while IFS="=" read key value; do
+      case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
+      esac
+    done < "$BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+    echo "Downloading from: $jarUrl"
+
+    if command -v wget > /dev/null; then
+        echo "Found wget ... using wget"
+        wget ‐O "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" "$jarUrl"
+    elif command -v curl > /dev/null; then
+        echo "Found curl ... using curl"
+        curl -o "$BASE_DIR/.mvn/wrapper/maven-wrapper.jar" "$jarUrl"
+    else
+        echo "Falling back to using Java to download"
+        javaClass="$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.java"
+        if [ -e "$javaClass" ]; then
+            if [ ! -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+                echo " - Compiling MavenWrapperDownloader.java ..."
+                # Compiling the Java class
+                ("$JAVA_HOME/bin/javac" "$javaClass")
+            fi
+            if [ -e "$BASE_DIR/.mvn/wrapper/MavenWrapperDownloader.class" ]; then
+                # Running the downloader
+                echo " - Running MavenWrapperDownloader.java ..."
+                ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
+            fi
+        fi
+    fi
+fi
+##########################################################################################
+# End of extension
+##########################################################################################
+
 export MAVEN_PROJECTBASEDIR=${MAVEN_BASEDIR:-"$BASE_DIR"}
 if [ "$MVNW_VERBOSE" = true ]; then
   echo $MAVEN_PROJECTBASEDIR
