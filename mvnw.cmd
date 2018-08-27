@@ -116,6 +116,12 @@ for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config") do s
 
 :endReadAdditionalConfig
 
+IF EXIST "%MAVEN_PROJECTBASEDIR%\.mvn\settings.xml" (
+    SET MAVEN_SETTINGS_ARG= --settings "%MAVEN_PROJECTBASEDIR%\.mvn\settings.xml"
+) else (
+    SET MAVEN_SETTINGS_ARG=
+)
+
 SET MAVEN_JAVA_EXE="%JAVA_HOME%\bin\java.exe"
 set WRAPPER_JAR="%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.jar"
 set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
