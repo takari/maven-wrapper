@@ -118,7 +118,7 @@ for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config") do s
 
 IF NOT EXIST "%MAVEN_PROJECTBASEDIR%\.mvn\maven.config" goto endReadAdditionalMavenConfig
 @setlocal EnableExtensions EnableDelayedExpansion
-for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\maven.config") do set MAVEN_ARGS=!MAVEN_CONFIG! %%a
+for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\maven.config") do set MAVEN_CONFIG=!MAVEN_CONFIG! %%a
 @endlocal &  set MAVEN_CONFIG=%MAVEN_CONFIG%
 
 :endReadAdditionalMavenConfig
@@ -143,6 +143,8 @@ if exist %WRAPPER_JAR% (
     echo Finished downloading %WRAPPER_JAR%
 )
 @REM End of extension
+
+echo %MAVEN_JAVA_EXE% %JVM_CONFIG_MAVEN_PROPS% %MAVEN_OPTS% %MAVEN_DEBUG_OPTS% -classpath %WRAPPER_JAR% "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" %WRAPPER_LAUNCHER% %MAVEN_CONFIG% %*
 
 %MAVEN_JAVA_EXE% %JVM_CONFIG_MAVEN_PROPS% %MAVEN_OPTS% %MAVEN_DEBUG_OPTS% -classpath %WRAPPER_JAR% "-Dmaven.multiModuleProjectDirectory=%MAVEN_PROJECTBASEDIR%" %WRAPPER_LAUNCHER% %MAVEN_CONFIG% %*
 if ERRORLEVEL 1 goto error
