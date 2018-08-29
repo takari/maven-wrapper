@@ -116,6 +116,13 @@ for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config") do s
 
 :endReadAdditionalConfig
 
+IF NOT EXIST "%MAVEN_PROJECTBASEDIR%\.mvn\maven.config" goto endReadAdditionalMavenConfig
+@setlocal EnableExtensions EnableDelayedExpansion
+for /F "usebackq delims=" %%a in ("%MAVEN_PROJECTBASEDIR%\.mvn\maven.config") do set MAVEN_CONFIG=!MAVEN_CONFIG! %%a
+@endlocal &  set MAVEN_CONFIG=%MAVEN_CONFIG%
+
+:endReadAdditionalMavenConfig
+
 SET MAVEN_JAVA_EXE="%JAVA_HOME%\bin\java.exe"
 set WRAPPER_JAR="%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.jar"
 set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain

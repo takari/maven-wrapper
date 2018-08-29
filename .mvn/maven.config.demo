@@ -1,0 +1,3 @@
+-s .mvn//settings.xml
+-e
+-v
