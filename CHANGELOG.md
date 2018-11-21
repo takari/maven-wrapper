@@ -72,7 +72,7 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - also see https://github.com/takari/maven-wrapper/pull/33
   - contributed by https://github.com/vicaya
   - fixes https://github.com/takari/maven-wrapper/issues/31
-  - tested on Linux, OSX and Windows
+  - tested on Linux, macOS and Windows
 - Removed unused MAVEN_CMD_LINE_ARGS
   - see https://github.com/takari/maven-wrapper/pull/28
   - contributed by Michal Domagala - https://github.com/michaldo
