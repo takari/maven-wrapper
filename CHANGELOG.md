@@ -7,7 +7,7 @@ The following provides most information at an easier glance.
 
 - Coorected check for MVNW_REPOURL in mvnw.cmd
   - fixes https://github.com/takari/maven-wrapper/issues/106
-  - see
+  - see https://github.com/takari/maven-wrapper/pull/107
   - contributed by Manfred Moser http://www.simpligility.com
 Release performed by Manfred Moser - http://www.simpligility.com
 
