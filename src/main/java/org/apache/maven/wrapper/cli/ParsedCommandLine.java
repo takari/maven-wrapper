@@ -61,7 +61,7 @@ public class ParsedCommandLine {
 
   /**
    * Returns true if the given option is present in this command-line.
-   * 
+   *
    * @param option The option, without the '-' or '--' prefix.
    * @return true if the option is present.
    */
@@ -72,7 +72,7 @@ public class ParsedCommandLine {
 
   /**
    * See also {@link #hasOption}.
-   * 
+   *
    * @param logLevelOptions the options to check
    * @return true if any of the passed options is present
    */
@@ -87,7 +87,7 @@ public class ParsedCommandLine {
 
   /**
    * Returns the value of the given option.
-   * 
+   *
    * @param option The option, without the '-' or '--' prefix.
    * @return The option. never returns null.
    */

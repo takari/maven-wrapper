@@ -56,7 +56,7 @@ public class DefaultDownloader implements Downloader {
       Authenticator.setDefault(new SystemPropertiesProxyAuthenticator());
     }
   }
-  
+
   private void configureAuthentication() {
     if (System.getProperty("MVNW_USERNAME") != null && System.getProperty("MVNW_PASSWORD") != null && System.getProperty("http.proxyUser") == null) {
       Authenticator.setDefault(new Authenticator() {

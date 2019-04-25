@@ -37,7 +37,7 @@ import java.util.TreeSet;
  * A command-line parser which supports a command/sub-command style command-line interface. Supports the following
  * syntax:
  * </p>
- * 
+ *
  * <pre>
  * &lt;option>* (&lt;sub-command> &lt;sub-command-option>*)*
  * </pre>
@@ -74,7 +74,7 @@ public class CommandLineParser {
 
   /**
    * Parses the given command-line.
-   * 
+   *
    * @param commandLine The command-line.
    * @return The parsed command line.
    * @throws org.apache.maven.wrapper.cli.CommandLineArgumentException On parse failure.
@@ -85,7 +85,7 @@ public class CommandLineParser {
 
   /**
    * Parses the given command-line.
-   * 
+   *
    * @param commandLine The command-line.
    * @return The parsed command line.
    * @throws org.apache.maven.wrapper.cli.CommandLineArgumentException On parse failure.
@@ -163,7 +163,7 @@ public class CommandLineParser {
 
   /**
    * Prints a usage message to the given stream.
-   * 
+   *
    * @param out The output stream to write to.
    */
   public void printUsage(Appendable out) {
@@ -225,7 +225,7 @@ public class CommandLineParser {
 
   /**
    * Defines a new option. By default, the option takes no arguments and has no description.
-   * 
+   *
    * @param options The options values.
    * @return The option, which can be further configured.
    */

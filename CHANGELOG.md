@@ -29,7 +29,7 @@ at an easier glance.
 - MVNW_REPOURL check bug in mvnw
   - fixes https://github.com/takari/maven-wrapper/issues/109
   - see https://github.com/takari/maven-wrapper/pull/111
-  - contributed by  Piotrek Żygieło https://github.com/pzygielo and 
+  - contributed by  Piotrek Żygieło https://github.com/pzygielo and
 	Sebastian Peters https://github.com/sepe81,
 
 Release performed by Manfred Moser - http://www.simpligility.com
@@ -60,7 +60,7 @@ Release performed by Manfred Moser - http://www.simpligility.com
 - Fix compile path for cygwin
   - see https://github.com/takari/maven-wrapper/pull/83
   - contributed by Dániel Kovács https://github.com/AFulgens
-- Fix for path with spaces on Windows 
+- Fix for path with spaces on Windows
   - see https://github.com/takari/maven-wrapper/pull/101
   - contributed by Paul Stöhr https://github.com/CiTuX
 - Support for authentication to corporate repository manager
@@ -147,7 +147,7 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - contributed by Karsten Sperling - https://github.com/ksperling
 - Be defensive about creating directories for files
   - see https://github.com/takari/maven-wrapper/pull/29
-  - contributed by Dave Syer - https://github.com/dsyer 
+  - contributed by Dave Syer - https://github.com/dsyer
 - Fix for paths with spaces on Windows
   - see https://github.com/takari/maven-wrapper/pull/21
   - contributed by Andreas Ahlenstorf - https://github.com/aahlenst

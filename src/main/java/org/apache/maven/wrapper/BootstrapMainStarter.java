@@ -48,5 +48,5 @@ public class BootstrapMainStarter {
       }
     }
     throw new RuntimeException(String.format("Could not locate the Maven launcher JAR in Maven distribution '%s'.", mavenHome));
-  }  
+  }
 }
