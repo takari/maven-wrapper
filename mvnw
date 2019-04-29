@@ -246,7 +246,6 @@ else
         else
             curl --user $MVNW_USERNAME:$MVNW_PASSWORD -o "$wrapperJarPath" "$jarUrl" -f
         fi
-        
     else
         if [ "$MVNW_VERBOSE" = true ]; then
           echo "Falling back to using Java to download"
@@ -272,6 +271,13 @@ else
                 ("$JAVA_HOME/bin/java" -cp .mvn/wrapper MavenWrapperDownloader "$MAVEN_PROJECTBASEDIR")
             fi
         fi
+    fi
+
+    if [ ! -s "$wrapperJarPath" ]; then
+        if [ "$MVNW_VERBOSE" = true ]; then
+          echo "Downloaded file is empty, deleting it (no network connection?)"
+        fi
+        rm "$wrapperJarPath"
     fi
 fi
 ##########################################################################################
