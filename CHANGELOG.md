@@ -21,7 +21,7 @@ at an easier glance.
   - contributed by Guy Brand https://github.com/guylabs
 - Ensure correct executable flag setting
   - fixes https://github.com/takari/maven-wrapper/issues/78
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
 - Updated documentation to include plugin version
 
 ## Version 0.5.3 - 2019-02-25
@@ -32,7 +32,7 @@ at an easier glance.
   - contributed by  Piotrek Żygieło https://github.com/pzygielo and 
 	Sebastian Peters https://github.com/sepe81,
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.5.2 - 2019-02-20
 
@@ -40,16 +40,16 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - see https://github.com/takari/maven-wrapper/pull/108
   - contributed by Ralph Schaer https://github.com/ralscha
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.5.1 - 2019-02-19
 
 - Corrected check for MVNW_REPOURL in mvnw.cmd
   - fixes https://github.com/takari/maven-wrapper/issues/106
   - see https://github.com/takari/maven-wrapper/pull/107
-  - contributed by Manfred Moser http://www.simpligility.com
+  - contributed by Manfred Moser https://www.simpligility.com/
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.5.0 - 2019-02-18
 
@@ -68,18 +68,18 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - see https://github.com/takari/maven-wrapper/pull/86
   - contributed by Sebastian Peters https://github.com/sepe81,
     Sander Wartenberg https://github.com/sanderino666 and
-    Manfred Moser http://www.simpligility.com
+    Manfred Moser https://www.simpligility.com/
 - Consistent license header across all Java source
   - see https://github.com/takari/maven-wrapper/pull/105
   - fixes https://github.com/takari/maven-wrapper/issues/104
-  - contributed by Manfred Moser http://www.simpligility.com
+  - contributed by Manfred Moser https://www.simpligility.com/
 - Support MVNW_REPOURL environment variable usage
   -  during wrapper install and wrapper usage
   - for wrapper and maven distro download
   - in scripts and wrapper binary
-    - contributed by Manfred Moser http://www.simpligility.com
+    - contributed by Manfred Moser https://www.simpligility.com/
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.4.2 - 2018-07-02
 
@@ -88,7 +88,7 @@ Release performed by Manfred Moser - http://www.simpligility.com
 - end of line in properties file
 - parent pom upgrade
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.4.0 - 2018-02-19
 
@@ -97,11 +97,11 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - see https://github.com/takari/maven-wrapper/pull/70
   - fixed https://github.com/takari/maven-wrapper/issues/24
   - contributed by  Christofer Dutz https://github.com/chrisdutz
-  - and Manfred Moser - http://www.simpligility.com
+  - and Manfred Moser - https://www.simpligility.com/
 - Change URLs used to official Maven repo URL
   - done as part of above changes
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.3.0 - 2017-10-25
 
@@ -109,14 +109,14 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - see https://github.com/takari/maven-wrapper/pull/66
   - contributed by https://github.com/hcgpragt
 - Change default Maven version to 3.5.2 in wrapper config
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
 - Respect MVNW_VERBOSE when printing progress reporting and diagnostic info
   - see https://github.com/takari/maven-wrapper/pull/67
   - contributed by Konstantin Sobolev https://github.com/eprst
 - Smaller chunk size for download progress reporting
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.2.2 and 0.2.3 - 2017-09-12
 
@@ -127,10 +127,10 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - only print out basedir and version in verbose mode
   - set by environment variable MVNW_VERBOSE="true"
   - fixed NPE with https://github.com/takari/maven-wrapper/pull/65
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
   - and Tadaya Tsuyukubo https://github.com/ttddyy
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.2.1 - 2017-04-21
 
@@ -138,7 +138,7 @@ Release performed by Manfred Moser - http://www.simpligility.com
   - see https://github.com/takari/maven-wrapper/pull/45
   - contributed by Mark Chesney - https://github.com/mches
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.2.0 - 2017-04-17
 
@@ -161,26 +161,26 @@ Release performed by Manfred Moser - http://www.simpligility.com
 - Fix for stale wrapper jar file
   - see https://github.com/takari/maven-wrapper/pull/36
   - contributed by Mark Chesney - https://github.com/mches
-  - and Manfred Moser - http://www.simpligility.com
+  - and Manfred Moser - https://www.simpligility.com/
   - fixes https://github.com/takari/maven-wrapper/issues/37
 - Plugin and other project updates
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
 - Support for spaces in path on Unix
   - see https://github.com/takari/maven-wrapper/pull/25
   - contributed by https://github.com/beverage
-  - and Manfred Moser - http://www.simpligility.com
+  - and Manfred Moser - https://www.simpligility.com/
 - Upgraded default Maven version to 3.5.0
-  - contributed by Manfred Moser - http://www.simpligility.com
+  - contributed by Manfred Moser - https://www.simpligility.com/
   - and Fred Bricon
 - Support for simple shell like dash
   - fixes https://github.com/takari/maven-wrapper/issues/34
-  - tested by Manfred Moser  - http://www.simpligility.com
+  - tested by Manfred Moser  - https://www.simpligility.com/
 - Support for Solaris
   - see https://github.com/takari/maven-wrapper/pull/40
   - fixes https://github.com/takari/maven-wrapper/issues/34
   - contributed by Pelisse Romain https://github.com/rpelisse
 
-Release performed by Manfred Moser - http://www.simpligility.com
+Release performed by Manfred Moser - https://www.simpligility.com/
 
 ## Version 0.1.6 - 2016-10-17
 

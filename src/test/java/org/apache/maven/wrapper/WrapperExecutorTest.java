@@ -1,8 +1,9 @@
 package org.apache.maven.wrapper;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,10 +11,9 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.util.Properties;
 
-import org.apache.commons.io.IOUtils;
-import org.junit.Assert;
-import org.junit.Test;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class WrapperExecutorTest {
   private final Installer install;
@@ -36,7 +36,7 @@ public class WrapperExecutorTest {
     testDir.mkdirs();
     propertiesFile = new File(testDir, "maven/wrapper/maven-wrapper.properties");
 
-    properties.put("distributionUrl", "http://server/test/maven.zip");
+    properties.put("distributionUrl", "https://server/test/maven.zip");
     properties.put("distributionBase", "testDistBase");
     properties.put("distributionPath", "testDistPath");
     properties.put("zipStoreBase", "testZipBase");
@@ -50,8 +50,8 @@ public class WrapperExecutorTest {
   public void loadWrapperMetadataFromFile() throws Exception {
     WrapperExecutor wrapper = WrapperExecutor.forWrapperPropertiesFile(propertiesFile, System.out);
 
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getDistribution());
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
     Assert.assertEquals("testDistBase", wrapper.getConfiguration().getDistributionBase());
     Assert.assertEquals("testDistPath", wrapper.getConfiguration().getDistributionPath());
     Assert.assertEquals("testZipBase", wrapper.getConfiguration().getZipBase());
@@ -62,8 +62,8 @@ public class WrapperExecutorTest {
   public void loadWrapperMetadataFromDirectory() throws Exception {
     WrapperExecutor wrapper = WrapperExecutor.forProjectDirectory(testDir, System.out);
 
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getDistribution());
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
     Assert.assertEquals("testDistBase", wrapper.getConfiguration().getDistributionBase());
     Assert.assertEquals("testDistPath", wrapper.getConfiguration().getDistributionPath());
     Assert.assertEquals("testZipBase", wrapper.getConfiguration().getZipBase());
@@ -86,13 +86,13 @@ public class WrapperExecutorTest {
   public void propertiesFileOnlyContainsDistURL() throws Exception {
 
     properties = new Properties();
-    properties.put("distributionUrl", "http://server/test/maven.zip");
+    properties.put("distributionUrl", "https://server/test/maven.zip");
     writePropertiesFile(properties, propertiesFile, "header");
 
     WrapperExecutor wrapper = WrapperExecutor.forWrapperPropertiesFile(propertiesFile, System.out);
 
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getDistribution());
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getDistribution());
+    Assert.assertEquals(new URI("https://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
     Assert.assertEquals(PathAssembler.MAVEN_USER_HOME_STRING, wrapper.getConfiguration().getDistributionBase());
     Assert.assertEquals(Installer.DEFAULT_DISTRIBUTION_PATH, wrapper.getConfiguration().getDistributionPath());
     Assert.assertEquals(PathAssembler.MAVEN_USER_HOME_STRING, wrapper.getConfiguration().getZipBase());

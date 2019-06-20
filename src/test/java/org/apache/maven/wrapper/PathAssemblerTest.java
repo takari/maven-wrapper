@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,20 +15,20 @@
  */
 package org.apache.maven.wrapper;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.net.URI;
-import java.util.regex.Pattern;
-
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.net.URI;
+import java.util.regex.Pattern;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * @author Hans Dockter
@@ -50,7 +50,7 @@ public class PathAssemblerTest {
 
   @Test
   public void distributionDirWithMavenUserHomeBase() throws Exception {
-    configuration.setDistribution(new URI("http://server/dist/maven-0.9-bin.zip"));
+    configuration.setDistribution(new URI("https://server/dist/maven-0.9-bin.zip"));
 
     File distributionDir = pathAssembler.getDistribution(configuration).getDistributionDir();
     assertThat(distributionDir.getName(), matchesRegexp("[a-z0-9]+"));
@@ -60,7 +60,7 @@ public class PathAssemblerTest {
   @Test
   public void distributionDirWithProjectBase() throws Exception {
     configuration.setDistributionBase(PathAssembler.PROJECT_STRING);
-    configuration.setDistribution(new URI("http://server/dist/maven-0.9-bin.zip"));
+    configuration.setDistribution(new URI("https://server/dist/maven-0.9-bin.zip"));
 
     File distributionDir = pathAssembler.getDistribution(configuration).getDistributionDir();
     assertThat(distributionDir.getName(), matchesRegexp("[a-z0-9]+"));
@@ -69,7 +69,7 @@ public class PathAssemblerTest {
 
   @Test
   public void distributionDirWithUnknownBase() throws Exception {
-    configuration.setDistribution(new URI("http://server/dist/maven-1.0.zip"));
+    configuration.setDistribution(new URI("https://server/dist/maven-1.0.zip"));
     configuration.setDistributionBase("unknownBase");
 
     try {
@@ -82,7 +82,7 @@ public class PathAssemblerTest {
 
   @Test
   public void distZipWithMavenUserHomeBase() throws Exception {
-    configuration.setDistribution(new URI("http://server/dist/maven-1.0.zip"));
+    configuration.setDistribution(new URI("https://server/dist/maven-1.0.zip"));
 
     File dist = pathAssembler.getDistribution(configuration).getZipFile();
     assertThat(dist.getName(), equalTo("maven-1.0.zip"));
@@ -93,7 +93,7 @@ public class PathAssemblerTest {
   @Test
   public void distZipWithProjectBase() throws Exception {
     configuration.setZipBase(PathAssembler.PROJECT_STRING);
-    configuration.setDistribution(new URI("http://server/dist/maven-1.0.zip"));
+    configuration.setDistribution(new URI("https://server/dist/maven-1.0.zip"));
 
     File dist = pathAssembler.getDistribution(configuration).getZipFile();
     assertThat(dist.getName(), equalTo("maven-1.0.zip"));

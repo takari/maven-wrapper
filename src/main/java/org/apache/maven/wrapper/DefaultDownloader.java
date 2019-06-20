@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,9 +15,6 @@
  */
 
 package org.apache.maven.wrapper;
-
-import static org.apache.maven.wrapper.MavenWrapperMain.MVNW_PASSWORD;
-import static org.apache.maven.wrapper.MavenWrapperMain.MVNW_USERNAME;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -31,6 +28,9 @@ import java.net.PasswordAuthentication;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
+
+import static org.apache.maven.wrapper.MavenWrapperMain.MVNW_PASSWORD;
+import static org.apache.maven.wrapper.MavenWrapperMain.MVNW_USERNAME;
 
 /**
  * @author Hans Dockter

@@ -1,17 +1,17 @@
 package org.apache.maven.wrapper;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.File;
-import java.net.URI;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Zip;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.net.URI;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author Hans Dockter
@@ -55,7 +55,7 @@ public class InstallerTest {
     configuration.setZipPath("someZipPath");
     configuration.setDistributionBase(PathAssembler.MAVEN_USER_HOME_STRING);
     configuration.setDistributionPath("someDistPath");
-    configuration.setDistribution(new URI("http://server/maven-0.9.zip"));
+    configuration.setDistribution(new URI("https://server/maven-0.9.zip"));
     configuration.setAlwaysDownload(false);
     configuration.setAlwaysUnpack(false);
     distributionDir = new File(testDir, "someDistPath");
@@ -98,8 +98,8 @@ public class InstallerTest {
     Assert.assertEquals(distributionDir, localDistribution.getDistributionDir());
     Assert.assertEquals(zipDestination, localDistribution.getZipFile());
 
-    // download.download(new URI("http://some/test"), distributionDir);
-    // verify(download).download(new URI("http://some/test"), distributionDir);
+    // download.download(new URI("https://some/test"), distributionDir);
+    // verify(download).download(new URI("https://some/test"), distributionDir);
   }
 
   @Test
@@ -163,8 +163,8 @@ public class InstallerTest {
     Assert.assertEquals(distributionDir, localDistribution.getDistributionDir());
     Assert.assertEquals(zipDestination, localDistribution.getZipFile());
 
-    // download.download(new URI("http://some/test"), distributionDir);
-    // verify(download).download(new URI("http://some/test"), distributionDir);
+    // download.download(new URI("https://some/test"), distributionDir);
+    // verify(download).download(new URI("https://some/test"), distributionDir);
   }
 
   public void zipTo(File directoryToZip, File zipFile) {
