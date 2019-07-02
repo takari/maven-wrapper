@@ -38,6 +38,7 @@ public class MavenWrapperMain {
   public static final String MVNW_VERBOSE = "MVNW_VERBOSE";
   public static final String MVNW_USERNAME = "MVNW_USERNAME";
   public static final String MVNW_PASSWORD = "MVNW_PASSWORD";
+  public static final String MVNW_PATH = "MVNW_PATH";
   public static final String MVNW_REPOURL = "MVNW_REPOURL";
 
   public static final String MVN_VERSION = "3.6.1";

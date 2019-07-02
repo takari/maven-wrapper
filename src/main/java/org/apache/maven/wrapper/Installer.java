@@ -52,7 +52,9 @@ public class Installer {
     URI distributionUrl;
     String mvnwRepoUrl = System.getenv(MavenWrapperMain.MVNW_REPOURL);
     if (mvnwRepoUrl != null && !mvnwRepoUrl.isEmpty()) {
-      distributionUrl = new URI(mvnwRepoUrl + "/" + MavenWrapperMain.MVN_PATH);
+      String mvnwPath = System.getenv(MavenWrapperMain.MVNW_PATH);
+      String path = mvnwPath != null && !mvnwPath.isEmpty() ? mvnwPath : MavenWrapperMain.MVN_PATH;
+      distributionUrl = new URI(mvnwRepoUrl + "/" + path);
       Logger.info("Detected MVNW_REPOURL environment variable " + mvnwRepoUrl);
     } else {
       distributionUrl = configuration.getDistribution();
