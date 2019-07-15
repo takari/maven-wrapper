@@ -163,6 +163,18 @@ takari-maven-plugin, the URL is used in the maven-wrapper.properties file.
 If not set, but your mirror URL in your settings.xml is configured, it will be
 used.
 
+## Using Maven Wrapper and a local Maven Installation in parallel
+
+If you work on multiple Java projects, some of them may use the Maven Wrapper
+while others won't. To simplify working with both types of projects, add the
+following lines to `.bashrc` or `.zshrc`
+
+```sh
+mvn() {
+    [ -f mvnw ] && ./mvnw "$@" || command mvn "$@"
+}
+```
+
 ## Developing and Releasing
 
 To test Maven wrapper usage:
