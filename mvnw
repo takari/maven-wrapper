@@ -20,6 +20,7 @@
 
 # ----------------------------------------------------------------------------
 # Maven Start Up Batch script
+# https://github.com/takari/maven-wrapper
 #
 # Required ENV vars:
 # ------------------
