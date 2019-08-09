@@ -19,6 +19,7 @@
 
 @REM ----------------------------------------------------------------------------
 @REM Maven Start Up Batch script
+@REM From https://github.com/takari/maven-wrapper
 @REM
 @REM Required ENV vars:
 @REM JAVA_HOME - location of a JDK home dir
