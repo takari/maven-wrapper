@@ -197,7 +197,7 @@ concat_lines() {
 BASE_DIR=`find_maven_basedir "$(pwd)"`
     
 if [ "$MVNW_VERBOSE" = true ]; then
-    echo "BASE_DIR is: ${BASE_DIR}" 
+    echo "BASE_DIR is: $BASE_DIR" 
 fi
     
 if [ -z "$BASE_DIR" ]; then
@@ -222,11 +222,11 @@ else
       jarUrl="https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.5/maven-wrapper-0.5.5.jar"
     fi
     if [ "$MVNW_VERBOSE" = true ]; then
-        echo "Reading properties from {$BASE_DIR/.mvn/wrapper/maven-wrapper.properties}"
+        echo "Reading properties from $BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
     fi
     while IFS="=" read key value; do
         if [ "$MVNW_VERBOSE" = true ]; then
-            echo "Got property: {$key} value: {$value}"
+            echo "Got property: $key value: $value"
         fi
       case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
       esac
