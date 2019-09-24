@@ -128,7 +128,7 @@ set DOWNLOAD_URL="https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0
 
 if "%MVNW_VERBOSE%" == "true" (
     echo Reading properties from %MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties
-    echo "If the next lines look weird, check your line endings in your maven-wrapper.properties file"
+    echo If the next lines look weird, check your line endings in your maven-wrapper.properties file
 )
 
 FOR /F "tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties") DO (
