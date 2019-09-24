@@ -223,7 +223,7 @@ else
     fi
     if [ "$MVNW_VERBOSE" = true ]; then
         echo "Reading properties from $BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
-        echo "If the next lines look weird, you might have an unwanted carriage return in your maven-wrapper.properties file"
+        echo "If the next lines look weird, check your line endings in your maven-wrapper.properties file"
     fi
     while IFS="=" read key value; do
         if [ "$MVNW_VERBOSE" = true ]; then
