@@ -223,10 +223,11 @@ else
     fi
     if [ "$MVNW_VERBOSE" = true ]; then
         echo "Reading properties from $BASE_DIR/.mvn/wrapper/maven-wrapper.properties"
+        echo "If the next lines look weird, you might have an unwanted carriage return in your maven-wrapper.properties file"
     fi
     while IFS="=" read key value; do
         if [ "$MVNW_VERBOSE" = true ]; then
-            echo "Got property: $key value: $value"
+            echo "Got property: {$key} value: {$value}"
         fi
       case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
       esac
