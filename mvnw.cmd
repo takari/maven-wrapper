@@ -108,6 +108,10 @@ cd "%EXEC_DIR%"
 
 :endDetectBaseDir
 
+if "%MVNW_VERBOSE%" == "true" (
+    echo MAVEN_PROJECTBASEDIR is: %MAVEN_PROJECTBASEDIR%
+)
+
 IF NOT EXIST "%MAVEN_PROJECTBASEDIR%\.mvn\jvm.config" goto endReadAdditionalConfig
 
 @setlocal EnableExtensions EnableDelayedExpansion
@@ -122,7 +126,14 @@ set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
 
 set DOWNLOAD_URL="https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.5/maven-wrapper-0.5.5.jar"
 
+if "%MVNW_VERBOSE%" == "true" (
+    echo Reading properties from %MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties
+)
+
 FOR /F "tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties") DO (
+    if "%MVNW_VERBOSE%" == "true" (
+        echo Got property: %%A value: %%B
+    )
     IF "%%A"=="wrapperUrl" SET DOWNLOAD_URL=%%B
 )
 
