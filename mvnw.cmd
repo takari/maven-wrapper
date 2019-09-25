@@ -131,7 +131,7 @@ if "%MVNW_VERBOSE%" == "true" (
     echo If the next lines look weird, check your line endings in your maven-wrapper.properties file
 )
 
-FOR /F "tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties") DO (
+FOR /F "tokens=1,2 delims==" %%A IN (' type "%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties"') DO (
     if "%MVNW_VERBOSE%" == "true" (
         echo Got property: ^(%%A^) value: ^(%%B^)
     )
