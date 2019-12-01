@@ -41,25 +41,22 @@ public class WrapperExecutor {
 
   private final File propertiesFile;
 
-  private final Appendable warningOutput;
-
   private final WrapperConfiguration config = new WrapperConfiguration();
 
-  public static WrapperExecutor forProjectDirectory(File projectDir, Appendable warningOutput) {
-    return new WrapperExecutor(new File(projectDir, "maven/wrapper/maven-wrapper.properties"), new Properties(), warningOutput);
+  public static WrapperExecutor forProjectDirectory(File projectDir) {
+    return new WrapperExecutor(new File(projectDir, "maven/wrapper/maven-wrapper.properties"), new Properties());
   }
 
-  public static WrapperExecutor forWrapperPropertiesFile(File propertiesFile, Appendable warningOutput) {
+  public static WrapperExecutor forWrapperPropertiesFile(File propertiesFile) {
     if (!propertiesFile.exists()) {
       throw new RuntimeException(String.format("Wrapper properties file '%s' does not exist.", propertiesFile));
     }
-    return new WrapperExecutor(propertiesFile, new Properties(), warningOutput);
+    return new WrapperExecutor(propertiesFile, new Properties());
   }
 
-  WrapperExecutor(File propertiesFile, Properties properties, Appendable warningOutput) {
+  WrapperExecutor(File propertiesFile, Properties properties) {
     this.properties = properties;
     this.propertiesFile = propertiesFile;
-    this.warningOutput = warningOutput;
     if (propertiesFile.exists()) {
       try {
         loadProperties(propertiesFile, properties);
@@ -115,11 +112,6 @@ public class WrapperExecutor {
    */
   public WrapperConfiguration getConfiguration() {
     return config;
-  }
-
-  public void execute(String[] args, Installer install, BootstrapMainStarter bootstrapMainStarter) throws Exception {
-    File mavenHome = install.createDist(config);
-    bootstrapMainStarter.start(args, mavenHome);
   }
 
   private String getProperty(String propertyName) {

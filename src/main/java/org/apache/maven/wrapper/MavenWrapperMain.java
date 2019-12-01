@@ -47,7 +47,6 @@ public class MavenWrapperMain {
   public static void main(String[] args) throws Exception {
     File wrapperJar = wrapperJar();
     File propertiesFile = wrapperProperties(wrapperJar);
-    File rootDir = rootDir(wrapperJar);
 
     String wrapperVersion = wrapperVersion();
     Logger.info("Takari Maven Wrapper " + wrapperVersion);
@@ -55,10 +54,8 @@ public class MavenWrapperMain {
     Properties systemProperties = System.getProperties();
     systemProperties.putAll(parseSystemPropertiesFromArgs(args));
 
-    addSystemProperties(rootDir);
-
-    WrapperExecutor wrapperExecutor = WrapperExecutor.forWrapperPropertiesFile(propertiesFile, System.out);
-    wrapperExecutor.execute(args, new Installer(new DefaultDownloader("mvnw", wrapperVersion), new PathAssembler(mavenUserHome())), new BootstrapMainStarter());
+    WrapperExecutor wrapperExecutor = WrapperExecutor.forWrapperPropertiesFile(propertiesFile);
+    System.out.println(new Installer(new DefaultDownloader("mvnw", wrapperVersion), new PathAssembler(mavenUserHome())).createDist(wrapperExecutor.getConfiguration()).getCanonicalPath());
   }
 
   private static Map<String, String> parseSystemPropertiesFromArgs(String[] args) {
@@ -67,15 +64,6 @@ public class MavenWrapperMain {
     converter.configure(commandLineParser);
     commandLineParser.allowUnknownOptions();
     return converter.convert(commandLineParser.parse(args));
-  }
-
-  private static void addSystemProperties(File rootDir) {
-    System.getProperties().putAll(SystemPropertiesHandler.getSystemProperties(new File(mavenUserHome(), "maven.properties")));
-    System.getProperties().putAll(SystemPropertiesHandler.getSystemProperties(new File(rootDir, "maven.properties")));
-  }
-
-  private static File rootDir(File wrapperJar) {
-    return wrapperJar.getParentFile().getParentFile().getParentFile();
   }
 
   private static File wrapperProperties(File wrapperJar) {

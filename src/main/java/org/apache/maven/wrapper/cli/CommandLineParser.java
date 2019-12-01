@@ -65,7 +65,7 @@ public class CommandLineParser {
   private final PrintWriter deprecationPrinter;
 
   public CommandLineParser() {
-    this(new OutputStreamWriter(System.out));
+    this(new OutputStreamWriter(System.err));
   }
 
   public CommandLineParser(Writer deprecationPrinter) {
