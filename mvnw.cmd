@@ -25,12 +25,13 @@
 @REM
 @REM Environment Variable Prerequisites
 @REM
-@REM   JAVA_HOME       (Optional) Must point at your Java Development Kit installation.
-@REM   MAVEN_BASEDIR   (Optional) Override the project base dir
-@REM   MVNW_REPOURL    (Optional) A mirror url of the Maven Central repo
-@REM   MVNW_USERNAME   (Optional) User name for donwloading the wrapper jar
-@REM   MVNW_PASSWORD   (Optional) Passowrd for donwloading the wrapper jar
-@REM   MVNW_VERBOSE    (Optional) if set to 'true', dump debug info
+@REM   JAVA_HOME        (Optional) Must point at your Java Development Kit installation.
+@REM   MAVEN_BASEDIR    (Optional) Override the project base dir
+@REM   MAVEN_BATCH_ECHO (Optional) Set to 'on' to enable the echoing of the batch commands.
+@REM   MVNW_REPOURL     (Optional) A mirror url of the Maven Central repo
+@REM   MVNW_USERNAME    (Optional) User name for donwloading the wrapper jar
+@REM   MVNW_PASSWORD    (Optional) Passowrd for donwloading the wrapper jar
+@REM   MVNW_VERBOSE     (Optional) if set to 'true', dump debug info
 @REM ----------------------------------------------------------------------------
 
 @REM Begin all REM lines with '@' in case MAVEN_BATCH_ECHO is 'on'
