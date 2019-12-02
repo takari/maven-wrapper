@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author Hans Dockter
  */
 public class InstallerTest {
-  private File testDir = new File("target/test-files/SystemPropertiesHandlerTest-" + System.currentTimeMillis());
+  private File testDir = new File("target/test-files/InstallerTest-" + System.currentTimeMillis());
 
   private Installer install;
 

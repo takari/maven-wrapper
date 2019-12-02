@@ -32,6 +32,7 @@
 #   MVNW_USERNAME   (Optional) User name for donwloading the wrapper jar
 #   MVNW_PASSWORD   (Optional) Passowrd for donwloading the wrapper jar
 #   MVNW_VERBOSE    (Optional) if set to 'true', dump debug info
+#   MVNW_OPTS       (Optional) parameters passed to the Java VM when running wrapper
 # ----------------------------------------------------------------------------
 
 # OS specific support. $var _must_ be set to either true or false.
@@ -233,8 +234,8 @@ if $cygwin; then
   _MVNW_wrapperJarPath=`cygpath --path --windows "$_MVNW_wrapperJarPath"`
 fi
 _MVNW_MAVEN_HOME="$(
-  WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
-  "$JAVACMD" -classpath "$_MVNW_wrapperJarPath" ${WRAPPER_LAUNCHER} "$@"
+  [ -n "$MVNW_OPTS" ] && export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS $MVNW_OPTS"
+  "$JAVACMD" -classpath "$_MVNW_wrapperJarPath" org.apache.maven.wrapper.MavenWrapperMain
 )"
 
 # For Cygwin, ensure paths are in Unix format before anything is touched

@@ -19,11 +19,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Map;
 import java.util.Properties;
-
-import org.apache.maven.wrapper.cli.CommandLineParser;
-import org.apache.maven.wrapper.cli.SystemPropertiesCommandLineConverter;
 
 /**
  * @author Hans Dockter
@@ -51,19 +47,8 @@ public class MavenWrapperMain {
     String wrapperVersion = wrapperVersion();
     Logger.info("Takari Maven Wrapper " + wrapperVersion);
 
-    Properties systemProperties = System.getProperties();
-    systemProperties.putAll(parseSystemPropertiesFromArgs(args));
-
     WrapperExecutor wrapperExecutor = WrapperExecutor.forWrapperPropertiesFile(propertiesFile);
     System.out.println(new Installer(new DefaultDownloader("mvnw", wrapperVersion), new PathAssembler(mavenUserHome())).createDist(wrapperExecutor.getConfiguration()).getCanonicalPath());
-  }
-
-  private static Map<String, String> parseSystemPropertiesFromArgs(String[] args) {
-    SystemPropertiesCommandLineConverter converter = new SystemPropertiesCommandLineConverter();
-    CommandLineParser commandLineParser = new CommandLineParser();
-    converter.configure(commandLineParser);
-    commandLineParser.allowUnknownOptions();
-    return converter.convert(commandLineParser.parse(args));
   }
 
   private static File wrapperProperties(File wrapperJar) {

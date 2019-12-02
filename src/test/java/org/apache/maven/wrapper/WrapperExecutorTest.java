@@ -22,7 +22,7 @@ public class WrapperExecutorTest {
 
   private Properties properties = new Properties();
 
-  private File testDir = new File("target/test-files/SystemPropertiesHandlerTest-" + System.currentTimeMillis());
+  private File testDir = new File("target/test-files/WrapperExecutorTest-" + System.currentTimeMillis());
 
   private File mockInstallDir = new File(testDir, "mock-dir");
 

@@ -32,6 +32,7 @@
 @REM   MVNW_USERNAME    (Optional) User name for donwloading the wrapper jar
 @REM   MVNW_PASSWORD    (Optional) Passowrd for donwloading the wrapper jar
 @REM   MVNW_VERBOSE     (Optional) if set to 'true', dump debug info
+@REM   MVNW_OPTS        (Optional) parameters passed to the Java VM when running wrapper
 @REM ----------------------------------------------------------------------------
 
 @REM Begin all REM lines with '@' in case MAVEN_BATCH_ECHO is 'on'
@@ -181,7 +182,10 @@ if exist %WRAPPER_JAR% (
 )
 @REM End of extension
 
-for /F "delims=" %%A IN ('"%JAVACMD%" -classpath %WRAPPER_JAR% %WRAPPER_LAUNCHER% %*') DO SET "MAVEN_HOME=%%A"
+if not "%MVNW_OPTS%" == "" (
+  SET JAVA_TOOL_OPTIONS="%JAVA_TOOL_OPTIONS% %MVNW_OPTS%"
+)
+for /F "delims=" %%A IN ('"%JAVACMD%" -classpath "%WRAPPER_JAR%" %WRAPPER_LAUNCHER%) DO SET "MAVEN_HOME=%%A"
 
 "%MAVEN_HOME%/bin/mvn.cmd" %*
 if ERRORLEVEL 1 goto error
