@@ -43,10 +43,6 @@ public class WrapperExecutor {
 
   private final WrapperConfiguration config = new WrapperConfiguration();
 
-  public static WrapperExecutor forProjectDirectory(File projectDir) {
-    return new WrapperExecutor(new File(projectDir, "maven/wrapper/maven-wrapper.properties"), new Properties());
-  }
-
   public static WrapperExecutor forWrapperPropertiesFile(File propertiesFile) {
     if (!propertiesFile.exists()) {
       throw new RuntimeException(String.format("Wrapper properties file '%s' does not exist.", propertiesFile));

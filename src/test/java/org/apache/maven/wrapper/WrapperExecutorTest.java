@@ -56,30 +56,6 @@ public class WrapperExecutorTest {
   }
 
   @Test
-  public void loadWrapperMetadataFromDirectory() throws Exception {
-    WrapperExecutor wrapper = WrapperExecutor.forProjectDirectory(testDir);
-
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getDistribution());
-    Assert.assertEquals(new URI("http://server/test/maven.zip"), wrapper.getConfiguration().getDistribution());
-    Assert.assertEquals("testDistBase", wrapper.getConfiguration().getDistributionBase());
-    Assert.assertEquals("testDistPath", wrapper.getConfiguration().getDistributionPath());
-    Assert.assertEquals("testZipBase", wrapper.getConfiguration().getZipBase());
-    Assert.assertEquals("testZipPath", wrapper.getConfiguration().getZipPath());
-  }
-
-  @Test
-  public void useDefaultMetadataNoProeprtiesFile() throws Exception {
-    WrapperExecutor wrapper = WrapperExecutor.forProjectDirectory(new File(testDir, "unknown"));
-
-    Assert.assertNull(wrapper.getDistribution());
-    Assert.assertNull(wrapper.getConfiguration().getDistribution());
-    Assert.assertEquals(PathAssembler.MAVEN_USER_HOME_STRING, wrapper.getConfiguration().getDistributionBase());
-    Assert.assertEquals(Installer.DEFAULT_DISTRIBUTION_PATH, wrapper.getConfiguration().getDistributionPath());
-    Assert.assertEquals(PathAssembler.MAVEN_USER_HOME_STRING, wrapper.getConfiguration().getZipBase());
-    Assert.assertEquals(Installer.DEFAULT_DISTRIBUTION_PATH, wrapper.getConfiguration().getZipPath());
-  }
-
-  @Test
   public void propertiesFileOnlyContainsDistURL() throws Exception {
 
     properties = new Properties();
