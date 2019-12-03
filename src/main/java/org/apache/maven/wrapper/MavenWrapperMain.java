@@ -31,10 +31,6 @@ import org.apache.maven.wrapper.cli.SystemPropertiesCommandLineConverter;
 public class MavenWrapperMain {
   public static final String DEFAULT_MAVEN_USER_HOME = System.getProperty("user.home") + "/.m2";
 
-  public static final String MAVEN_USER_HOME_PROPERTY_KEY = "maven.user.home";
-
-  public static final String MAVEN_USER_HOME_ENV_KEY = "MAVEN_USER_HOME";
-
   public static final String MVNW_VERBOSE = "MVNW_VERBOSE";
   public static final String MVNW_USERNAME = "MVNW_USERNAME";
   public static final String MVNW_PASSWORD = "MVNW_PASSWORD";
@@ -118,13 +114,6 @@ public class MavenWrapperMain {
   }
 
   private static File mavenUserHome() {
-    String mavenUserHome = System.getProperty(MAVEN_USER_HOME_PROPERTY_KEY);
-    if (mavenUserHome != null) {
-      return new File(mavenUserHome);
-    } else if ((mavenUserHome = System.getenv(MAVEN_USER_HOME_ENV_KEY)) != null) {
-      return new File(mavenUserHome);
-    } else {
-      return new File(DEFAULT_MAVEN_USER_HOME);
-    }
+    return new File(DEFAULT_MAVEN_USER_HOME);
   }
 }
