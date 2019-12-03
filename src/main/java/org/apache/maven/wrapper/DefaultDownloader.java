@@ -58,10 +58,10 @@ public class DefaultDownloader implements Downloader {
   }
   
   private void configureAuthentication() {
-    if (System.getProperty("MVNW_USERNAME") != null && System.getProperty("MVNW_PASSWORD") != null && System.getProperty("http.proxyUser") == null) {
+    if (System.getenv(MVNW_USERNAME) != null && System.getenv(MVNW_PASSWORD) != null && System.getProperty("http.proxyUser") == null) {
       Authenticator.setDefault(new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(System.getProperty("MVNW_USERNAME"), System.getProperty("MVNW_PASSWORD").toCharArray());
+                return new PasswordAuthentication(System.getenv(MVNW_USERNAME), System.getenv(MVNW_PASSWORD).toCharArray());
             }
         });
     }
