@@ -64,8 +64,8 @@ jobs:
       - /c/ProgramData/chocolatey/lib/maven/apache-maven-3.6.2
     before_install:
     - python -m SimpleHTTPServer 8080 &
-    - test -d /c/opt/jdk8/bin || choco install jdk8 -params 'installdir=c:\opt\jdk8' -y
-    - test -d /c/opt/cygwin/bin || choco install cygwin -params '/InstallDir:c:\opt\cygwin' -y
+    - test -d /c/opt/jdk8/bin || choco install jdk8 -params 'installdir=c:\\opt\\jdk8' -y
+    - test -d /c/opt/cygwin/bin || choco install cygwin -params '/InstallDir:c:\\opt\\cygwin' -y
     - test -d /c/ProgramData/chocolatey/lib/maven/apache-maven-3.6.2/bin || choco install maven --version 3.6.2 -y
     script:
     - echo ================================================
