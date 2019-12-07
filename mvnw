@@ -165,6 +165,10 @@ if [ -r "$_MVNW_wrapperJarPath" ]; then
   if [ "$MVNW_VERBOSE" = true ]; then
     echo "Found .mvn/wrapper/maven-wrapper.jar"
   fi
+  # For Cygwin, switch paths to Windows format before running java
+  if $cygwin; then
+    _MVNW_wrapperJarPath=`cygpath --path --windows "$_MVNW_wrapperJarPath"`
+  fi
 else
   jarUrl="${MVNW_REPOURL:-https://repo.maven.apache.org/maven2}/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
   if [ -r "$_MVNW_wrapperProperties" ]; then
@@ -175,6 +179,12 @@ else
   fi
   if [ "$MVNW_VERBOSE" = true ]; then
     echo "Couldn't find .mvn/wrapper/maven-wrapper.jar, downloading it from: $jarUrl"
+  fi
+
+  # For Cygwin, switch paths to Windows format before running javac
+  if $cygwin; then
+    _MVNW_wrapperDir=`cygpath --path --windows "$_MVNW_wrapperDir"`
+    _MVNW_wrapperJarPath=`cygpath --path --windows "$_MVNW_wrapperJarPath"`
   fi
 
   if command -v wget > /dev/null; then
@@ -206,7 +216,6 @@ else
       fi
       # For Cygwin, switch paths to Windows format before running javac
       if $cygwin; then
-        _MVNW_wrapperDir=`cygpath --path --windows "$_MVNW_wrapperDir"`
         _MVNW_wrapperDownloaderSrc=`cygpath --path --windows "$_MVNW_wrapperDownloaderSrc"`
       fi
       # Compiling the Java class
@@ -217,10 +226,6 @@ else
       if [ "$MVNW_VERBOSE" = true ]; then
         echo " - Running MavenWrapperDownloader ..."
       fi
-      if $cygwin; then
-        _MVNW_wrapperDir=`cygpath --path --windows "$_MVNW_wrapperDir"`
-        _MVNW_wrapperJarPath=`cygpath --path --windows "$_MVNW_wrapperJarPath"`
-      fi
       "$JAVACMD" -classpath "$_MVNW_wrapperDir" MavenWrapperDownloader "$jarUrl" "$_MVNW_wrapperJarPath"
     fi
   fi
@@ -229,10 +234,6 @@ fi
 # End of extension
 ##########################################################################################
 
-# For Cygwin, switch paths to Windows format before running java
-if $cygwin; then
-  _MVNW_wrapperJarPath=`cygpath --path --windows "$_MVNW_wrapperJarPath"`
-fi
 _MVNW_MAVEN_HOME="$(
   [ -n "$MVNW_OPTS" ] && export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS $MVNW_OPTS"
   "$JAVACMD" -classpath "$_MVNW_wrapperJarPath" org.apache.maven.wrapper.MavenWrapperMain
@@ -261,4 +262,4 @@ unset _MVNW_SAVE_JAVA_HOME
 unset _MVNW_PROJECTBASEDIR
 unset _MVNW_wrapperDir _MVNW_wrapperProperties _MVNW_wrapperJarPath _MVNW_wrapperDownloaderSrc _MVNW_wrapperDownloaderClass
 
-exec -- "$_MVNW_MAVEN_HOME"/bin/mvn "$@"
+exec "$_MVNW_MAVEN_HOME"/bin/mvn "$@"

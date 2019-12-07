@@ -145,13 +145,13 @@ cd "%EXEC_DIR%"
 
 :endDetectBaseDir
 
-set WRAPPER_JAR="%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.jar"
+set "WRAPPER_JAR=%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.jar"
 set WRAPPER_LAUNCHER=org.apache.maven.wrapper.MavenWrapperMain
 
 @REM Begin of extension
-set DOWNLOAD_URL="https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
+set DOWNLOAD_URL=https://repo.maven.apache.org/maven2/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar
 if not "%MVNW_REPOURL%" == "" (
-  SET DOWNLOAD_URL="%MVNW_REPOURL%/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
+  SET "DOWNLOAD_URL=%MVNW_REPOURL%/io/takari/maven-wrapper/0.5.6/maven-wrapper-0.5.6.jar"
 )
 
 FOR /F "usebackq tokens=1,2 delims==" %%A IN ("%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-wrapper.properties") DO (
@@ -183,11 +183,21 @@ if exist %WRAPPER_JAR% (
 @REM End of extension
 
 if not "%MVNW_OPTS%" == "" (
-  SET JAVA_TOOL_OPTIONS="%JAVA_TOOL_OPTIONS% %MVNW_OPTS%"
+  if "%JAVA_TOOL_OPTIONS%" == "" (
+    SET "JAVA_TOOL_OPTIONS=%MVNW_OPTS%"
+  ) else (
+    SET "JAVA_TOOL_OPTIONS=%JAVA_TOOL_OPTIONS% %MVNW_OPTS%"
+  )
 )
-for /F "delims=" %%A IN ('"%JAVACMD%" -classpath "%WRAPPER_JAR%" %WRAPPER_LAUNCHER%) DO SET "MAVEN_HOME=%%A"
 
-"%MAVEN_HOME%/bin/mvn.cmd" %*
+for /F "delims=" %%A IN ('cmd.exe /c ""%JAVACMD%" -classpath "%WRAPPER_JAR%" %WRAPPER_LAUNCHER%"') DO SET "MAVEN_HOME=%%A"
+
+if "%MAVEN_HOME%" == "" (
+  echo Error: maven home is empty. >&2
+  goto error
+) else (
+  "%MAVEN_HOME%/bin/mvn.cmd" %*
+)
 if ERRORLEVEL 1 goto error
 goto end
 

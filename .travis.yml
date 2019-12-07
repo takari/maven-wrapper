@@ -20,7 +20,7 @@ install:
 - find target -maxdepth 1 -name '*.jar' -a ! -name '*source*' | xargs -I {} cp {} target/maven-wrapper.jar
 - cp mvnw mvnw.cmd target/
 - mkdir -p target/.mvn/wrapper
-- test "x$TRAVIS_OS_NAME" = xwindows || cp .mvn/wrapper/MavenWrapperDownloader.java target/.mvn/wrapper/
+- cp .mvn/wrapper/MavenWrapperDownloader.java target/.mvn/wrapper/
 - sed -e '/^wrapperUrl=/d' .mvn/wrapper/maven-wrapper.properties >target/.mvn/wrapper/maven-wrapper.properties
 - echo "wrapperUrl=http://localhost:8080/target/maven-wrapper.jar" >>target/.mvn/wrapper/maven-wrapper.properties
 - mv .mvn .mvn.bak
@@ -71,28 +71,31 @@ jobs:
     - echo ================================================
     - echo "subsystem - `uname -s`" | grep MSYS
     - rm -f .mvn/wrapper/*.jar
-    - PATH="$PATH:/c/opt/jdk8/bin" ./mvnw -version
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - JAVA_HOME=/c/opt/jdk8 ./mvnw -version
     - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
-    - PATH="$PATH:/c/opt/jdk8/bin" ./mvnw -version | grep -q 'Apache Maven'
+    - PATH="$PATH:/c/opt/jdk8/bin" ./mvnw -version | grep 'Apache Maven'
 
     - echo ================================================
-    - /c/Program\ Files/Git/bin/sh.exe -lc 'echo subsystem - `uname -s`' | grep MINGW
+    - /c/Program\ Files/Git/bin/sh.exe -c 'echo subsystem - `uname -s`' | grep MINGW
     - rm -f .mvn/wrapper/*.jar
-    - /c/Program\ Files/Git/bin/sh.exe -lc 'PATH="$PATH:/c/opt/jdk8/bin" ./mvnw -version'
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - JAVA_HOME=/c/opt/jdk8 /c/Program\ Files/Git/bin/sh.exe -c 'exec ./mvnw -version'
     - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
-    - /c/Program\ Files/Git/bin/sh.exe -lc 'PATH="$PATH:/c/opt/jdk8/bin" ./mvnw -version' | grep -q 'Apache Maven'
+    - /c/Program\ Files/Git/bin/sh.exe -c 'PATH="$PATH:/c/opt/jdk8/bin" exec ./mvnw -version' | grep 'Apache Maven'
 
     - echo ================================================
     - cmd.exe /c 'c:\opt\cygwin\bin\sh.exe -lc "echo subsystem - `uname -s`"' | grep CYGWIN
     - rm -f .mvn/wrapper/*.jar
-    - cmd.exe /c 'c:\opt\cygwin\bin\sh.exe -lc "cd build/'$TRAVIS_REPO_SLUG'/target && PATH=\"$PATH:/cygdrive/c/opt/jdk8/bin\" ./mvnw -version"'
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - cmd.exe /c "c:\opt\cygwin\bin\sh.exe -lc \"cd build/$TRAVIS_REPO_SLUG/target && JAVA_HOME=/cygdrive/c/opt/jdk8 exec ./mvnw -version\""
     - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
-    - cmd.exe /c 'c:\opt\cygwin\bin\sh.exe -lc "cd build/'$TRAVIS_REPO_SLUG'/target && PATH=\"$PATH:/cygdrive/c/opt/jdk8/bin\" ./mvnw -version"' | grep -q 'Apache Maven'
+    - cmd.exe /c 'c:\opt\cygwin\bin\sh.exe -lc "cd build/'$TRAVIS_REPO_SLUG'/target && PATH=\"$PATH:/cygdrive/c/opt/jdk8/bin\" exec ./mvnw -version"' | grep 'Apache Maven'
 
     - echo ================================================
     - echo "subsystem - cmd.exe"
     - rm -f .mvn/wrapper/*.jar
-      # now mvnw.cmd have to get a valid JAVA_HOME
-    - cmd.exe /c 'set JAVA_HOME=c:\opt\jdk8& cd build\'${TRAVIS_REPO_SLUG//\//\\}'\target & mvnw -version'
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - JAVA_HOME='c:\opt\jdk8' cmd.exe /c 'cd build\'${TRAVIS_REPO_SLUG//\//\\}'\target & mvnw -version'
     - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
-    - cmd.exe /c 'set JAVA_HOME=c:\opt\jdk8& cd build\'${TRAVIS_REPO_SLUG//\//\\}'\target & mvnw -version' | grep -q 'Apache Maven'
+    - cmd.exe /c 'set "PATH=%PATH%;c:\opt\jdk8\bin"& cd build\'${TRAVIS_REPO_SLUG//\//\\}'\target & mvnw -version' | grep 'Apache Maven'

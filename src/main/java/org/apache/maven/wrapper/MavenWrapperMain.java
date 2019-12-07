@@ -48,7 +48,7 @@ public class MavenWrapperMain {
     Logger.info("Takari Maven Wrapper " + wrapperVersion);
 
     WrapperExecutor wrapperExecutor = WrapperExecutor.forWrapperPropertiesFile(propertiesFile);
-    System.out.println(new Installer(new DefaultDownloader("mvnw", wrapperVersion), new PathAssembler(mavenUserHome())).createDist(wrapperExecutor.getConfiguration()).getCanonicalPath());
+    System.out.print(new Installer(new DefaultDownloader("mvnw", wrapperVersion), new PathAssembler(mavenUserHome())).createDist(wrapperExecutor.getConfiguration()).getCanonicalPath());
   }
 
   private static File wrapperProperties(File wrapperJar) {
