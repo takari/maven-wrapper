@@ -30,11 +30,6 @@ before_script:
 - set -o pipefail
 - curl http://localhost:8080/pom.xml >/dev/null || sleep 3 || curl http://localhost:8080/pom.xml >/dev/null
 
-script:
-- ./mvnw -version
-- diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
-- ./mvnw -version | grep 'Apache Maven'
-
 after_script:
 - popd
 - mv .mvn.bak .mvn
@@ -48,11 +43,68 @@ jobs:
     os: linux
     language: java
     jdk: openjdk8
+    services:
+    - docker
+    before_install:
+    - python -m SimpleHTTPServer 8080 &
+    - docker pull adoptopenjdk/openjdk8:alpine-slim
+    script:
+    - true =========== /bin/sh ===========
+    - ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== bash ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - bash ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - bash ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== bash posix mode ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - bash --posix ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - bash --posix ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== dash ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - dash ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - dash ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== busybox ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - docker run --rm -i --net=host -v `pwd`:/cwd -v ~/.m2/repository:/root/.m2/repository -w /cwd adoptopenjdk/openjdk8:alpine-slim ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - docker run --rm -i --net=host -v `pwd`:/cwd -v ~/.m2/repository:/root/.m2/repository -w /cwd adoptopenjdk/openjdk8:alpine-slim ./mvnw -version | grep 'Apache Maven'
 
   - name: "Test for macOS"
     os: osx
     osx_image: xcode9.3 # for jdk 8
     language: java
+    script:
+    - true =========== /bin/sh ===========
+    - ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== bash ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - bash ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - bash ./mvnw -version | grep 'Apache Maven'
+
+    - true =========== bash posix mode ===========
+    - rm -f .mvn/wrapper/*.jar
+    - test ! -f .mvn/wrapper/maven-wrapper.jar
+    - bash --posix ./mvnw -version
+    - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar
+    - bash --posix ./mvnw -version | grep 'Apache Maven'
 
   - name: "Test for windows (MSYS/MINGW/CYGWIN/CMD)"
     os: windows
