@@ -49,6 +49,11 @@ jobs:
     - python -m SimpleHTTPServer 8080 &
     - docker pull adoptopenjdk/openjdk8:alpine-slim
     script:
+    - true =========== test MavenWrapperDownloader.java ===========
+    - javac -source 1.2 -target 1.2 -Xlint:-options .mvn/wrapper/MavenWrapperDownloader.java
+    - java -cp .mvn/wrapper MavenWrapperDownloader http://localhost:8080/pom.xml pom-downloaded.xml
+    - diff ../pom.xml pom-downloaded.xml
+
     - true =========== /bin/sh ===========
     - ./mvnw -version
     - diff maven-wrapper.jar .mvn/wrapper/maven-wrapper.jar

@@ -48,7 +48,7 @@ public class MavenWrapperDownloader extends Authenticator {
       System.exit(1);
     }
   }
-  @Override
+  // @Override
   protected PasswordAuthentication getPasswordAuthentication() {
     return new PasswordAuthentication(System.getenv("MVNW_USERNAME"), System.getenv("MVNW_PASSWORD").toCharArray());
   }
