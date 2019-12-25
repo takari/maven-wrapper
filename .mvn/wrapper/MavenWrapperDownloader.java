@@ -75,12 +75,10 @@ public class MavenWrapperDownloader {
         }
         System.out.println("- Downloading from: " + url);
 
-        File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
-        if(!outputFile.getParentFile().exists()) {
-            if(!outputFile.getParentFile().mkdirs()) {
-                System.out.println(
-                        "- ERROR creating output directory '" + outputFile.getParentFile().getAbsolutePath() + "'");
-            }
+        final File outputFile = new File(baseDirectory.getAbsolutePath(), MAVEN_WRAPPER_JAR_PATH);
+        final File parentFile = outputFile.getParentFile();
+        if(!parentFile.exists()) {
+            createFile(parentFile);
         }
         System.out.println("- Downloading to: " + outputFile.getAbsolutePath());
         try {
@@ -91,6 +89,13 @@ public class MavenWrapperDownloader {
             System.out.println("- Error downloading");
             e.printStackTrace();
             System.exit(1);
+        }
+    }
+
+    protected static void createFile(File parentFile) {
+        if(!parentFile.mkdirs()) {
+            System.out.println(
+                    "- ERROR creating output directory '" + parentFile.getAbsolutePath() + "'");
         }
     }
 
