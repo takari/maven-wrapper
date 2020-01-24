@@ -142,6 +142,8 @@ if exist %WRAPPER_JAR% (
     )
 
     powershell -Command "&{"^
+		"$proxy = [System.Net.WebRequest]::GetSystemWebProxy();"^
+		"$proxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials;"^
 		"$webclient = new-object System.Net.WebClient;"^
 		"if (-not ([string]::IsNullOrEmpty('%MVNW_USERNAME%') -and [string]::IsNullOrEmpty('%MVNW_PASSWORD%'))) {"^
 		"$webclient.Credentials = new-object System.Net.NetworkCredential('%MVNW_USERNAME%', '%MVNW_PASSWORD%');"^
