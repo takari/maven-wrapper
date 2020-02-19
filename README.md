@@ -1,5 +1,27 @@
 # Maven Wrapper
 
+## Ongoing Migration to Apache Maven
+
+The project codebase has been accepted to be included in the upstream Apache
+Maven project itself. Currently the plan is to release the wrapper as a feature
+of the upcoming Maven 3.7.0 release. For this purpose the following resources
+are available:
+
+- Maven developer mailing list for discussions
+- maven-wrapper-plugin with wrapper goal to replace takari-maven-plugin at
+https://gitbox.apache.org/repos/asf/maven-wrapper-plugin.git
+- Maven studies repository/ maven-wrapper branch as first code migration to be
+  base of inclusion in Maven core at
+  https://github.com/apache/maven-studies/tree/maven-wrapper
+- Maven wrapper specific issue tracker project https://issues.apache.org/jira/projects/MWRAPPER/
+
+We encourage any users and contributors to work with us within the Apache Maven
+project on any further changes.
+
+This project is essentially frozen now.
+
+## Legacy Documentation
+
 The Maven Wrapper is an easy way to ensure a user of your Maven build has
 everything necessary to run your Maven build.
 
