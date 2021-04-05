@@ -4,7 +4,7 @@
 
 The project codebase has been accepted to be included in the upstream Apache
 Maven project itself. Currently the plan is to release the wrapper as a feature
-of the upcoming Maven 3.7.0 release. For this purpose the following resources
+of the upcoming Maven 4.0.0 release. For this purpose the following resources
 are available:
 
 - Maven developer mailing list for discussions
